@@ -82,7 +82,7 @@ void *handle_client(void *arg) {
     strncpy(ok.payload, "Bienvenido", 956);
     send_packet(client_fd, &ok);
 
-    // 🔁 Bucle principal
+    //Bucle principal
     while (recv(client_fd, &pkt, sizeof(pkt), MSG_WAITALL) > 0) {
 
         pthread_mutex_lock(&mutex_lista);
@@ -91,7 +91,7 @@ void *handle_client(void *arg) {
         if (idx != -1) {
             lista[idx].ultimo_mensaje = time(NULL);
 
-            // 🔥 Si estaba inactivo, vuelve a activo
+            
             if (strcmp(lista[idx].status, STATUS_INACTIVO) == 0) {
                 strcpy(lista[idx].status, STATUS_ACTIVO);
             }
